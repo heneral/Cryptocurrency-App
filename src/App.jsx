@@ -65,6 +65,15 @@ function App() {
     setSortConfig({ key, direction })
   }
 
+  const formatPrice = (price) => {
+    if (price >= 1) {
+      return price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    } else {
+      // For prices less than $1, show up to 8 decimal places, removing trailing zeros
+      return price.toFixed(8).replace(/\.?0+$/, '')
+    }
+  }
+
   if (loading) return <div className="loading">Loading...</div>
   if (error) return <div className="error">Error: {error}</div>
 
@@ -109,7 +118,7 @@ function App() {
                   <img src={coin.image} alt={coin.name} className="coin-icon" />
                   {coin.name} ({coin.symbol.toUpperCase()})
                 </td>
-                <td>${coin.current_price.toLocaleString()}</td>
+                <td>${formatPrice(coin.current_price)}</td>
                 <td className={coin.price_change_percentage_24h !== null ? (coin.price_change_percentage_24h >= 0 ? 'positive' : 'negative') : ''}>
                   {coin.price_change_percentage_24h !== null ? coin.price_change_percentage_24h.toFixed(2) + '%' : 'N/A'}
                 </td>
