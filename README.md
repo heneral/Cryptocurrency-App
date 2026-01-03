@@ -58,6 +58,9 @@ This app uses the free CoinGecko API (https://www.coingecko.com/en/api) to fetch
 - Vite
 - CoinGecko API
 
+## Live Demo
+https://cryptocurrency.richardsawanaka.workers.dev/
+
 ## License
 
 This project is licensed under the MIT License.
